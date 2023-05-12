@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 export const LoginPage = () => {
-
   return (
     <>
     <div className='login_main_div absolute h-login-div w-login-div left-5 top-4 rounded-2xl shadow-xl bg-neutral-100 text-center'>
