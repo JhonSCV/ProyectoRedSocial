@@ -14,15 +14,26 @@ export const authSlice = createSlice({
     },
     reducers: {
         register: (state, action) => {
+            state.status = 'Logged.';
             state.email = action.payload.email;
         },
         logout: (state, action) => {
-            console.log("You logged out.");
+            state.status = "checking..."
+            state.uid = null;
+            state.email = null;
+            state.password = null;
+            state.displayName = null;
+            console.log("Usted se ha desconectado!");
         },
         checkingCredentials: (state, action) => {
             console.log("Checking...");
+        },
+        logIn: (state, action) => {
+            state.status = action.payload.status;
+            state.email = action.payload.email;
+            state.password = action.payload.password;
         }
     }
 })
 
-export const { register, logout, checkingCredentials } = authSlice.actions;
+export const { register, logout, checkingCredentials, logIn } = authSlice.actions;

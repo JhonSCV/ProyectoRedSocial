@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useForm } from '../helpers/hooks/useForm';
 import { registerAuth } from '../store/slices/auth/Thunks';
@@ -7,6 +7,7 @@ import { addUsername } from '../helpers/utils/fireStore';
 export const RegisterPage = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {username, email, password, onInputChange, formState} = useForm({
     username: "",
@@ -18,7 +19,7 @@ export const RegisterPage = () => {
     event.preventDefault();
     if (username == null || username == '') {alert("Revise el campo 'Username'"); return}
     const auth = await dispatch(registerAuth(email, password));
-    if (auth) {addUsername(username);}
+    if (auth) {addUsername(username); navigate("/"); alert("Cuenta creada!");}
     console.log(formState);
   };
   
@@ -29,21 +30,21 @@ export const RegisterPage = () => {
       <span className="titulo_div relative w-full h-16 text-login-title top-12 text-center font-bold"> Register here </span>
       <div className='campo_username relative h-20 w-8/12 m-auto top-20'>
         <span className="username_title w-64 h-7 font-medium block text-left"> Username </span>
-        <input type='text' name='username' onChange={ (event) => onInputChange(event) } className="campo w-full block text-center bg-transparent rounded-2xl border-2 border-black" required></input>
+        <input type='text' name='username' onChange={ (event) => onInputChange(event) } className="campo focus:border-cyan-500 focus:translate-y-0.5 outline-none focus:border-b-3 transition-all w-full block text-center bg-transparent border-b-2 border-black" required></input>
       </div>
       <div className='campo_email relative h-20 w-8/12 m-auto top-20'>
         <span className="email_title w-64 h-7 font-medium block text-left"> Email </span>
-        <input type='text' name='email' onChange={ (event) => onInputChange(event) } className="campo w-full block text-center bg-transparent rounded-2xl border-2 border-black" required></input>
+        <input type='text' name='email' onChange={ (event) => onInputChange(event) } className="campo focus:border-cyan-500 focus:translate-y-0.5 outline-none focus:border-b-3 transition-all w-full block text-center bg-transparent border-b-2 border-black" required></input>
       </div>
       <div className='campo_contraseña relative h-20 w-8/12 m-auto top-20'>
         <span className="password_title w-64 h-7 font-medium block text-left" > Password </span>
-        <input type='password' name='password' onChange={ (event) => onInputChange(event) } className="campo w-full block text-center bg-transparent rounded-2xl border-2 border-black" required></input>
+        <input type='password' name='password' onChange={ (event) => onInputChange(event) } className="campo focus:border-cyan-500 focus:translate-y-0.5 outline-none focus:border-b-3 transition-all w-full block text-center bg-transparent border-b-2 border-black" required></input>
       </div>
-      <button onClick={ (event) => onSubmit(event) } className='login_button relative w-72 block m-auto top-28 h-10 bg-cyan-500 rounded-3xl'>
+      <button onClick={ (event) => onSubmit(event) } className='register_button hover:bg-slate-800 hover:shadow-md hover:shadow-cyan-500 hover:translate-y-px transition-all relative w-72 block m-auto top-28 h-10 bg-cyan-500 rounded-3xl'>
         <span className="login_text text-neutral-100 font-bold text-2xl"> REGISTER </span>
       </button>
       <Link to='/'>
-        <span className='register_link relative font-medium top-40 text-base underline'> Do you already have an account? </span>
+        <span className='register_link hover:text-cyan-500 hover:text-lg transition-all relative font-medium top-40 text-base underline'> Already have an account? </span>
       </Link>
       <div className='titulo_aplicacion relative block top-48'>
         <div className="imagen_icono relative h-16 w-16 inline-block bg-message-icon bg-contain top-4"></div>

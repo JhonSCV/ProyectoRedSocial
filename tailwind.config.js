@@ -15,7 +15,10 @@ export default {
         'mini-logo' : "url('/mini_logo.png')",
         'message-icon' : "url('/message_icon.png')",
         'cloud-icon' : "url('/Cloud-icon.png')",
-        'notification-icon' : "url('/notification_icon.png')"
+        'notification-icon' : "url('/notification_icon.png')",
+        'chat-icon' : "url('/chat_icon.png')",
+        'logout-icon' : "url('/logout_icon.png')",
+        'publications-icon' : "url('/publications_icon.png')"
       },
       width: {
         '126' : '500px',
